@@ -1,14 +1,14 @@
-// eslint-disable-next-line
-import React, { useContext } from "react";
-// import { StoreContext } from "./redux/store/storeContext";
+import React from "react";
+import { Provider } from "react-redux";
 
-const App = () => {
-  // const { state, actions } = useContext(StoreContext);
+import store from "./redux/store";
+import RoutesApp from "./components/routes";
 
+export const App = () => {
   return (
-    <div>
-      Coming Soon
-    </div>
+      <Provider store={store}>
+        <RoutesApp />
+      </Provider>
   );
 };
 
