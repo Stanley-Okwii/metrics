@@ -1,22 +1,24 @@
-import { initialState, reducer } from "../reducers";
-import { useActions } from "../actions";
-import React, { createContext, useReducer, useEffect } from "react";
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import promiseMiddleware from 'redux-promise';
+import { reducer, initialState } from '../reducers';
+import { configureStore } from "@reduxjs/toolkit";
 
-const StoreContext = createContext(initialState);
 
-const StoreProvider = ({ children }) => {
+const middleware = [thunk, promiseMiddleware];
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const actions = useActions(state, dispatch);
-  
-  useEffect(() => console.log({ newState: state }), [state]);
-  
-  return (
-    <StoreContext.Provider value={{ state, dispatch, actions }}>
-      {children}
-    </StoreContext.Provider>
-  );
+if (process.env.NODE_ENV === 'development') {
+  const logger = createLogger({
+    collapsed: true,
+  });
+  middleware.push(logger);
+}
 
-};
+const store = configureStore({
+  reducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== 'production',
+  preloadedState: initialState,
+});
 
-export { StoreContext, StoreProvider };
+export default store;
