@@ -30,4 +30,4 @@ yarn-error.log*
 /.pnp
 .pnp.js
 */package-lock.json
-*/yarn-lock.json
+*/yarn.lock
