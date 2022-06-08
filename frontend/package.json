@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@material-ui/styles": "^4.11.5",
     "@reduxjs/toolkit": "^1.8.2",
+    "@spider-analyzer/timeline": "^3.4.1",
     "axios": "^0.27.2",
-    "fomantic-ui-css": "^2.8.8",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",

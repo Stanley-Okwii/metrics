@@ -5,12 +5,7 @@ import Dashboard from "./dashboard";
 import SignUp from "./signup";
 import LoginForm from "./login";
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-toast.configure();
-
-export const RoutesApp = () => (
+export const AppRoutes = () => (
     <Router>
         <Routes>
         <Route exact path="/" element={<Dashboard />} />
@@ -20,4 +15,4 @@ export const RoutesApp = () => (
     </Router>
 );
 
-export default RoutesApp;
+export default AppRoutes;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Form,
@@ -8,7 +9,10 @@ import {
   Segment,
 } from "semantic-ui-react";
 
+import { login } from "../redux/actions/authentication";
+
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -26,7 +30,7 @@ const LoginForm = () => {
               iconPosition="left"
               placeholder="e-mail"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event?.target?.value)}
             />
             <Form.Input
               fluid
@@ -35,7 +39,7 @@ const LoginForm = () => {
               placeholder="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event?.target?.value)}
             />
 
             <Button
@@ -47,7 +51,7 @@ const LoginForm = () => {
                   email,
                   password,
                 };
-                console.log("login data ", data);
+                dispatch(login(data));
               }}
             >
               Login
