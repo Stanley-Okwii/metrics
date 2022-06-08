@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Form,
@@ -8,10 +10,14 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-const SignUp = () => {
+import { signup } from "../redux/actions/authentication";
+
+const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -27,7 +33,7 @@ const SignUp = () => {
               iconPosition="left"
               placeholder="username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(event) => setUsername(event?.target?.value)}
             />
             <Form.Input
               fluid
@@ -35,7 +41,8 @@ const SignUp = () => {
               iconPosition="left"
               placeholder="e-mail"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
+              onChange={(event) => setEmail(event?.target?.value)}
             />
             <Form.Input
               fluid
@@ -44,7 +51,8 @@ const SignUp = () => {
               placeholder="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
+              onChange={(event) => setPassword(event?.target?.value)}
             />
             <Button
               color="teal"
@@ -56,7 +64,7 @@ const SignUp = () => {
                   password,
                   username,
                 };
-                console.log("sign up data ", data);
+                dispatch(signup(data));
               }}
             >
               Sign Up
@@ -64,11 +72,11 @@ const SignUp = () => {
           </Segment>
         </Form>
         <Message>
-          Have account already? <a href="/login">Log in</a>
+          Have account already? <Link to="/login">Log in</Link>
         </Message>
       </Grid.Column>
     </Grid>
   );
 };
 
-export default SignUp;
+export default SignUpForm;

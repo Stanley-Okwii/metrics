@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {
   Button,
@@ -30,6 +31,7 @@ const LoginForm = () => {
               iconPosition="left"
               placeholder="e-mail"
               value={email}
+              autoComplete="username"
               onChange={(event) => setEmail(event?.target?.value)}
             />
             <Form.Input
@@ -38,6 +40,7 @@ const LoginForm = () => {
               iconPosition="left"
               placeholder="Password"
               type="password"
+              autoComplete="current-password"
               value={password}
               onChange={(event) => setPassword(event?.target?.value)}
             />
@@ -59,7 +62,7 @@ const LoginForm = () => {
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="/signup">Sign Up</a>
+          New to us? <Link to="/signup">Sign Up</Link>
         </Message>
       </Grid.Column>
     </Grid>
