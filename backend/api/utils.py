@@ -9,11 +9,11 @@ def deserialize_datetime(datetime):
     """
     Deserialize datetime object into string form for JSON processing.
     params: datetime
-    return []
+    return 2022-04-02 19:02:04
     """
     if datetime is None:
         return None
-    return [datetime.strftime("%Y-%m-%d"), datetime.strftime("%H:%M:%S")]
+    return datetime.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def get_paginate_context(query):
