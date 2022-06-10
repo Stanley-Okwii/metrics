@@ -4,7 +4,8 @@ import {
   LOGIN_ERROR,
   SIGNUP_INIT,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  LOGOUT_SUCCESS
 } from "../actions/authentication";
 
 export const authState = {
@@ -17,7 +18,8 @@ export const authState = {
     loading: false,
     success: false,
     error: null,
-  }
+  },
+  logoutSuccess: false,
 };
 
 export const authReducer = (state, action) => {
@@ -83,6 +85,12 @@ export const authReducer = (state, action) => {
             error: action.payload,
           },
         };
+
+    case LOGOUT_SUCCESS:
+      return {
+        ...authState,
+        logoutSuccess: action.payload,
+      };
 
     default:
       return state;

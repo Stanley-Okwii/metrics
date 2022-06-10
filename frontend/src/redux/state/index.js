@@ -1,5 +1,7 @@
-import { auth } from '../reducers/authentication'
+import { authState } from '../reducers/authentication';
+import { metricsState } from '../reducers/metrics';
 
 export const initialState = {
-  auth
+  auth: authState,
+  metrics: metricsState
 };
