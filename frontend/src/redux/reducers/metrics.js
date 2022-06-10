@@ -2,6 +2,9 @@ import {
   FETCH_METRICS_INIT,
   FETCH_METRICS_SUCCESS,
   FETCH_METRICS_ERROR,
+  ADD_METRICS_INIT,
+  ADD_METRICS_SUCCESS,
+  ADD_METRICS_ERROR,
 } from "../actions/metrics";
 
 export const metricsState = {
@@ -10,6 +13,8 @@ export const metricsState = {
     data: [],
     error: null,
   },
+  addingMetrics: false,
+  addMetricError: null,
 };
 
 export const metricsReducer = (state, action) => {
@@ -42,6 +47,28 @@ export const metricsReducer = (state, action) => {
           loading: false,
           error: action.payload,
         },
+      };
+
+    case ADD_METRICS_INIT:
+      return {
+        ...state,
+        addingMetrics: true,
+      };
+
+    case ADD_METRICS_SUCCESS:
+      const metrics = state?.metrics?.data;
+      metrics.push(action.payload);
+      return {
+        ...state,
+        metrics: {
+            data: metrics,
+        },
+      };
+
+    case ADD_METRICS_ERROR:
+      return {
+        ...state,
+        addMetricError: action.payload,
       };
 
     default:

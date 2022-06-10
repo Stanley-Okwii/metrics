@@ -18,3 +18,21 @@ export const fetchMetrics = () => (dispatch) => {
       toast.error(data?.message);
     });
 };
+
+export const ADD_METRICS_INIT = "ADD_METRICS_INIT";
+export const ADD_METRICS_SUCCESS = "ADD_METRICS_SUCCESS";
+export const ADD_METRICS_ERROR = "ADD_METRICS_ERROR";
+
+export const addMetric = (requestData) => (dispatch) => {
+    dispatch({ type: ADD_METRICS_INIT });
+    return axiosInstance
+      .post("api/metrics", requestData)
+      .then(({ data }) => {
+        dispatch({ type: ADD_METRICS_SUCCESS, payload: data?.data });
+        toast.success("Successfully added metric");
+      })
+      .catch(({ response: { data } }) => {
+        dispatch({ type: ADD_METRICS_ERROR });
+        toast.error(data?.message);
+      });
+  };

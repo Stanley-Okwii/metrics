@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 
-const AddMetricModal = () => {
-  const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [value, setValue] = React.useState(0);
+import { addMetric } from "../redux/actions/metrics";
 
+const AddMetricModal = () => {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("Temperature");
+  const [value, setValue] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const handleAddMetric = () => {
+    const metric = {
+      value: Number(value),
+      name,
+    }
+    dispatch(addMetric(metric));
+    setOpen(false);
+  }
   return (
     <Modal
       closeIcon
@@ -21,13 +34,14 @@ const AddMetricModal = () => {
               fluid
               placeholder="Name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              disabled
+              onChange={(event) => setName(event.target.value)}
             />
             <Form.Input
               fluid
               placeholder="0"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(event) => setValue(event.target.value)}
             />
         </Form>
       </Modal.Content>
@@ -35,7 +49,7 @@ const AddMetricModal = () => {
         <Button onClick={() => setOpen(false)}>
           <Icon name="remove" /> Cancel
         </Button>
-        <Button color="primary" onClick={() => setOpen(false)}>
+        <Button primary onClick={() => handleAddMetric()}>
           <Icon name="plus" /> Add
         </Button>
       </Modal.Actions>
