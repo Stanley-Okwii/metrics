@@ -26,12 +26,10 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
     if(token){
       dispatch(fetchMetrics());
-      console.log("localStorage: ", token );
     } else {
       navigate("/login");
     }
   }, [navigate, dispatch]);
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
