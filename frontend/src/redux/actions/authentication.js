@@ -15,7 +15,7 @@ export const login = (requestData) => (dispatch) => {
       localStorage.setItem("token", data?.token);
       axiosInstance.interceptors.request.use(
         (config) => {
-          config.headers.authorization = data?.token;
+          config.headers.authorization = `Bearer ${data?.token}`;
           return config;
         },
         (error) => Promise.reject(error)
