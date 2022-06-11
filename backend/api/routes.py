@@ -115,6 +115,7 @@ class Metrics(Resource):
         metric = Metric(
             name=_name,
             value=_value,
+            time_stamp=datetime.utcnow(),
             user=user)
         metric.save()
 
