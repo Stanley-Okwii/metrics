@@ -13,8 +13,11 @@ export const metricsState = {
     data: [],
     error: null,
   },
-  addingMetrics: false,
-  addMetricError: null,
+  addedMetric: {
+    loading: false,
+    error: null,
+    data: {}
+  }
 };
 
 export const metricsReducer = (state, action) => {
@@ -52,7 +55,10 @@ export const metricsReducer = (state, action) => {
     case ADD_METRICS_INIT:
       return {
         ...state,
-        addingMetrics: true,
+        addedMetric: {
+          ...state.addedMetric,
+          loading: true,
+        },
       };
 
     case ADD_METRICS_SUCCESS:
@@ -61,14 +67,23 @@ export const metricsReducer = (state, action) => {
       return {
         ...state,
         metrics: {
+          ...state.metrics,
             data: metrics,
         },
+        addedMetric: {
+          ...state.addedMetric,
+          loading: false,
+          data: action.payload
+        }
       };
 
     case ADD_METRICS_ERROR:
       return {
         ...state,
-        addMetricError: action.payload,
+        addedMetric: {
+          ...state.addedMetric,
+          error: action.payload,
+        },
       };
 
     default:

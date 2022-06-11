@@ -56,3 +56,38 @@ export const TIME_FORMAT_TOOLTIP = "h:mm:ss A, DD-MMM-YYYY ";
 export const formatToolTipTime = (time) => {
   return moment(time).second(0).millisecond(0).format(TIME_FORMAT_TOOLTIP);
 };
+
+export const calculateAverage = (array) =>
+  array.reduce((n, m) => n + m, 0) / array.length;
+
+export const aggregateAverageMetrics = (data, intervalType) => {
+  const timeValueObj = {};
+  data.forEach((metric) => {
+    let key = moment(metric.time_stamp).millisecond(0).second(0);
+    if (intervalType === "minute") {
+      key = moment(metric.time_stamp).millisecond(0).second(0).minute(0);
+    }
+    if (intervalType === "hour") {
+      key = moment(metric.time_stamp)
+        .millisecond(0)
+        .second(0)
+        .minute(0)
+        .hour(0);
+    }
+
+    const values = timeValueObj[key];
+    if (values) {
+      values.push(metric?.value);
+      timeValueObj[key] = values;
+    } else {
+      timeValueObj[key] = [metric?.value];
+    }
+  });
+
+  const items = Object.entries(timeValueObj).map(([key, value]) => ({
+    time: moment(key),
+    metrics: [calculateAverage(value)],
+    total: calculateAverage(value),
+  }));
+  return items;
+};

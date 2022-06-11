@@ -8,11 +8,18 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const login = (requestData) => (dispatch) => {
   dispatch({ type: LOGIN_INIT });
   return axiosInstance
-    .post("api/users/login",requestData)
+    .post("api/users/login", requestData)
     .then(({ data }) => {
       dispatch({ type: LOGIN_SUCCESS });
       toast.success("Successfully logged in");
       localStorage.setItem("token", data?.token);
+      axiosInstance.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = data?.token;
+          return config;
+        },
+        (error) => Promise.reject(error)
+      );
     })
     .catch(({ response: { data } }) => {
       console.error("Error logging in: ", data?.message);
@@ -28,7 +35,7 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 export const signup = (requestData) => (dispatch) => {
   dispatch({ type: SIGNUP_INIT });
   return axiosInstance
-    .post("api/users/signup",requestData)
+    .post("api/users/signup", requestData)
     .then(({ data }) => {
       dispatch({ type: SIGNUP_SUCCESS, payload: data });
       toast.success(data?.message);
