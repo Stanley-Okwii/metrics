@@ -25,7 +25,6 @@ const metricsDefinition = {
   ],
 };
 
-
 const initialState = {
   timeSpan: {
     start: moment().subtract(1, "HOUR"),
@@ -40,7 +39,6 @@ const initialState = {
   },
 };
 
-
 const TimeLine = () => {
   const [state, setState] = useState(initialState);
   const metricsData = useSelector((state) => state.metrics?.metrics?.data);
@@ -54,9 +52,7 @@ const TimeLine = () => {
       min: start
         ? moment(start.time_stamp).subtract(1, "HOUR")
         : moment().subtract(1, "WEEK"),
-      max: end
-        ? moment(end.time_stamp).add(1, "HOUR")
-        : moment().endOf("DAY"),
+      max: end ? moment(end.time_stamp).add(1, "HOUR") : moment().endOf("DAY"),
     };
   };
 
@@ -83,24 +79,33 @@ const TimeLine = () => {
   };
 
   const getItems = () => {
-    const intervalMin = (state?.intervalMs > 60000 ? Math.floor(state.intervalMs/60000) : 1) * 5;
-    const intervalHour = intervalMin/60;
+    const intervalMin =
+      (state.intervalMs > 60000 ? Math.floor(state.intervalMs / 60000) : 1) *
+      5;
+    const intervalHour = intervalMin / 60;
     let items = [];
 
-    if ((intervalHour < 1) && metricsData.length){ // less than 1 hour, average per minute
-      items = aggregateAverageMetrics(metricsData);
-    }
+    if (metricsData.length) {
+      if (intervalHour < 1) {
+        // less than 1 hour, average per minute
+        items = aggregateAverageMetrics(metricsData);
+      }
 
-    if (intervalHour < 24 && metricsData.length) { // less than a day average per day
-      items = aggregateAverageMetrics(metricsData, "minute");
-    }
-    if (intervalHour >= 24) { // more than a day average per day
-      items = aggregateAverageMetrics(metricsData, "hour");
+      if (intervalHour < 24) {
+        // less than a day average per hour
+        items = aggregateAverageMetrics(metricsData, "minute");
+      }
+      if (intervalHour >= 24) {
+        // more than a day average per day
+        items = aggregateAverageMetrics(metricsData, "hour");
+      }
     }
 
     console.log("intervalHour ", intervalHour);
+    console.log("items ", items);
+    console.log("metricsData ", metricsData);
     return items;
-  }
+  };
 
   const getAllMetrics = (intervalMs) => {
     setState({

@@ -63,16 +63,12 @@ export const calculateAverage = (array) =>
 export const aggregateAverageMetrics = (data, intervalType) => {
   const timeValueObj = {};
   data.forEach((metric) => {
-    let key = moment(metric.time_stamp).millisecond(0).second(0);
+    let key = moment(metric.time_stamp).millisecond(0);
     if (intervalType === "minute") {
-      key = moment(metric.time_stamp).millisecond(0).second(0).minute(0);
+      key = moment(metric.time_stamp).millisecond(0).second(0);
     }
     if (intervalType === "hour") {
-      key = moment(metric.time_stamp)
-        .millisecond(0)
-        .second(0)
-        .minute(0)
-        .hour(0);
+      key = moment(metric.time_stamp).millisecond(0).second(0).minute(0);
     }
 
     const values = timeValueObj[key];
