@@ -1,4 +1,6 @@
-## Backend (Metrics API)
+# METRICS BACKEND
+
+Backend API for metrics timeline
 
 ## Pre-requisite
 - python 3.6
