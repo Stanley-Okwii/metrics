@@ -1,5 +1,6 @@
 *.pyc
-*.db
+# *.db
+*/tests/*.db
 env/
 env__/
 .vscode/

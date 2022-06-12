@@ -23,10 +23,20 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
+- Copy the values from `.env.example` file, and paste them into a new file `.env` in the same directory.
+
 - Start server at `localhost:5000`
 
 ```bash
 make start
+```
+
+- Test User Credentials:
+```json
+{
+    "email": "test@gmail.com",
+    "password": "P@55word"
+}
 ```
 
 
