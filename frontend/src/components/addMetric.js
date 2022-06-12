@@ -18,6 +18,7 @@ const AddMetricModal = () => {
     }
     dispatch(addMetric(metric));
     setOpen(false);
+    setValue(0);
   }
 
   return (

@@ -3,7 +3,7 @@
 Frontend for Metrics Timeline
 
 
-## Pre-Requisites
+## Pre-requisites
 - Node v16.13.2 (Can be downloaded [here](https://nodejs.org/download/release/v16.13.2/)). Download a `.pkg` file to install Node on MacOS.  
 - Yarn (Verify that you have yarn enabled — if not [install yarn globally](https://yarnpkg.com/lang/en/docs/install/))
 

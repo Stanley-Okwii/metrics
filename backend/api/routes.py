@@ -16,6 +16,7 @@ from .restx_models import (
 
 
 # TODO: Add logging
+# TODO: Add API documentation
 
 @rest_api.route("/api/users/signup")
 class SignUp(Resource):

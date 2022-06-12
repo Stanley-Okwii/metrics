@@ -2,7 +2,7 @@
 
 Backend API for Metrics Timeline
 
-## Pre-Requisite
+## Pre-requisite
 - python 3.6
 
 ### To Run
