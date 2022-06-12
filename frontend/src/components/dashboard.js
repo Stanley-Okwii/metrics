@@ -53,7 +53,7 @@ const Dashboard = () => {
 
       <Container text style={{ marginTop: "3em" }}>
         <Header as="h1">Metrics Timeline</Header>
-        <p>A timeline of temperature(C) over time.</p>
+        <p>A timeline of temperature(°C) over time.</p>
         <div style={{ width: "100%", height: "400px", marginLeft: "-10%" }}>
           {!isLoading && <TimeLine />}
           {isLoading && <Loader active size="huge" />}

@@ -15,7 +15,7 @@ import Tooltip from "./common/toolTip";
 
 const metricsDefinition = {
   count: 1,
-  legends: ["Temperature"],
+  legends: ["Temperature (°C)"],
   colors: [
     {
       fill: "#66b2b2",
