@@ -11,7 +11,7 @@ import {
   formatToolTipTime,
   aggregateAverageMetrics,
 } from "./utils";
-import Tooltip from "./common/ToolTip";
+import Tooltip from "./common/toolTip";
 
 const metricsDefinition = {
   count: 1,
@@ -120,6 +120,8 @@ const TimeLine = () => {
       setState({
         ...state,
         items: getItems(),
+        domains: [getDomain()],
+        maxDomain: getMaxDomain(),
       });
     }
   }, [newMetric]);
