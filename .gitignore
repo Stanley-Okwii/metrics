@@ -31,3 +31,4 @@ yarn-error.log*
 .pnp.js
 */package-lock.json
 */yarn.lock
+__snapshots__/
