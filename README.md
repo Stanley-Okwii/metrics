@@ -12,3 +12,6 @@ The app consists of a backend and frontend. To run the application, follow the i
 - The metric timestamp is auto captured at the time the user posts a metric.
 - All metrics are for Temperature in degrees celsius.
 - Metric values are integers.
+
+## Illustration
+![1](/images/metrics_demo.gif)
