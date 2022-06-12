@@ -101,9 +101,6 @@ const TimeLine = () => {
       }
     }
 
-    console.log("intervalHour ", intervalHour);
-    console.log("items ", items);
-    console.log("metricsData ", metricsData);
     return items;
   };
 
