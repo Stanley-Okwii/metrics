@@ -1,8 +1,8 @@
 # METRICS BACKEND
 
-Backend API for metrics timeline
+Backend API for Metrics Timeline
 
-## Pre-requisite
+## Pre-Requisite
 - python 3.6
 
 ### To Run
@@ -33,19 +33,12 @@ pip install -r requirements.txt
 make start
 ```
 
-- Test User Credentials:
-```json
-{
-    "email": "test@gmail.com",
-    "password": "P@55word"
-}
-```
-
 
 ## Tests
 
-To run tests using `pytest tests.py`, run the command:-
+To run unit tests using `pytest tests.py`, run the commands below in a new terminal:-
 
 ```bash
+source env/bin/activate
 make test
 ```
