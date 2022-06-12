@@ -1,12 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "semantic-ui-css/semantic.min.css";
 
 import store from "./redux/store";
 import AppRoutes from "./components/routes";
-
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 
 export const App = () => {

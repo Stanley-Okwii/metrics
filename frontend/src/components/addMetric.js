@@ -19,6 +19,7 @@ const AddMetricModal = () => {
     dispatch(addMetric(metric));
     setOpen(false);
   }
+
   return (
     <Modal
       closeIcon
