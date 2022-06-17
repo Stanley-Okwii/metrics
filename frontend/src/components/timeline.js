@@ -88,15 +88,14 @@ const TimeLine = () => {
     if (metricsData.length) {
       if (intervalHour < 1) {
         // less than 1 hour, average per minute
-        items = aggregateAverageMetrics(metricsData);
+        items = aggregateAverageMetrics(metricsData, "second");
       }
-
       if (intervalHour < 24) {
-        // less than a day average per hour
+        // less than a day, average per hour
         items = aggregateAverageMetrics(metricsData, "minute");
       }
       if (intervalHour >= 24) {
-        // more than a day average per day
+        // more than a day, average per day
         items = aggregateAverageMetrics(metricsData, "hour");
       }
     }
@@ -140,6 +139,7 @@ const TimeLine = () => {
     setState({
       ...state,
       domains,
+      items: getItems(),
     });
   };
 
@@ -147,6 +147,7 @@ const TimeLine = () => {
     setState({
       ...state,
       domains: [getDomain()],
+      items: getItems(),
     });
   };
 
